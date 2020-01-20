@@ -77,12 +77,6 @@ define sudo::conf(
   # replace whitespace in file name
   $cur_file_real = regsubst($cur_file, '\s+', '_', 'G')
 
-  if $::osfamily == 'RedHat' {
-    if (versioncmp($::sudoversion, '1.7.2p1') < 0) {
-      warning("Found sudo with version ${::sudoversion}, but at least version 1.7.2p1 is required!")
-    }
-  }
-
   if $content != undef {
     if $content =~ Array {
       $lines = join($content, "\n")
